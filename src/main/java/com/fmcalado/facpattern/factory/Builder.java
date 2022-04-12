@@ -7,14 +7,10 @@ import java.sql.SQLException;
 
 public abstract class Builder {
 
-    public void register() throws SQLException {
-        Model okModel = buildModel();
-        okModel.saveToDatabase(DataSource.getInstance().conn);
-    }
+  public void register() throws SQLException {
+    Model okModel = buildModel();
+    okModel.saveToDatabase(DataSource.getInstance().conn);
+  }
 
-    /**
-     * Subclasses will override this method in order to create specific model
-     * objects.
-     */
-    public abstract Model buildModel();
+  public abstract Model buildModel();
 }

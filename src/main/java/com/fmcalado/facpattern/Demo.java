@@ -7,22 +7,22 @@ import com.fmcalado.facpattern.factory.OrderBuilder;
 import java.sql.SQLException;
 
 public class Demo {
-    private static Builder builder;
+  private static Builder builder;
 
-    public static void main(String[] args) throws SQLException {
-        configure();
-        registerModel();
-    }
+  public static void main(String[] args) throws SQLException {
+    configure();
+    registerModel();
+  }
 
-    static void configure() {
-        if (System.getProperty("os.name").equals("Windows 10")) {
-            builder = new UserBuilder();
-        } else {
-            builder = new OrderBuilder();
-        }
+  static void configure() {
+    if (System.getProperty("os.name").equals("Windows 10")) {
+      builder = new UserBuilder();
+    } else {
+      builder = new OrderBuilder();
     }
+  }
 
-    static void registerModel() throws SQLException {
-        builder.register();
-    }
+  static void registerModel() throws SQLException {
+    builder.register();
+  }
 }
