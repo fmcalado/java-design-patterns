@@ -1,10 +1,8 @@
 package com.fmcalado.facpattern.models;
 
-/**
- * Common interface for all buttons.
- */
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public interface Model {
-    void printID();
-    int getID();
-    boolean saveToDatabase();
+    boolean saveToDatabase(Connection conn) throws SQLException;
 }

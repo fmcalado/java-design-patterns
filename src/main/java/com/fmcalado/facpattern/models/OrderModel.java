@@ -1,8 +1,9 @@
 package com.fmcalado.facpattern.models;
 
-/**
- * Windows button implementation.
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class OrderModel implements Model {
     int id;
 
@@ -10,41 +11,17 @@ public class OrderModel implements Model {
         this.id = id;
     }
 
-    @Override
-    public void printID() {
-        System.out.println(getID());
-    }
-
-    public int getID() {
-        return this.id;
-    }
 
     @Override
-    public boolean saveToDatabase() {
-        //TODO Get every prop from class, and insert it to database
+    public boolean saveToDatabase(Connection conn) throws SQLException {
+        String sqlQuery = "insert into orders(id) values(?)";
+        PreparedStatement pst;
+        pst = conn.prepareStatement(sqlQuery);
+        pst.setInt(1, this.id);
+
+        int created = pst.executeUpdate();
+        if(created > 0) return true;
+
         return false;
     }
-
-//    JPanel panel = new JPanel();
-//    JFrame frame = new JFrame();
-//    JButton button;
-//    public void printID() {
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        JLabel label = new JLabel("Hello World!");
-//        label.setOpaque(true);
-//        label.setBackground(new Color(235, 233, 126));
-//        label.setFont(new Font("Dialog", Font.BOLD, 44));
-//        label.setHorizontalAlignment(SwingConstants.CENTER);
-//        panel.setLayout(new FlowLayout(FlowLayout.CENTER));
-//        frame.getContentPane().add(panel);
-//        panel.add(label);
-//        getID();
-//        panel.add(button);
-//
-//        frame.setSize(320, 200);
-//        frame.setVisible(true);
-//        getID();
-//    }
-
-
 }
